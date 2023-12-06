@@ -1,0 +1,42 @@
+﻿@using Steamity.Models.InputModels;
+@model EditGameInputModel
+
+@{
+    ViewData["Title"] = "Edit Game";
+
+}
+
+<div class="container d-flex align-items-center justify-content-center" style="height: 75vh;">
+<form method="post" asp-action="Edit">
+    <div class="content">
+        <div class="p-3 mt-4 px-4" style="margin-top: 0 !important;">
+            <div class="row pb-2">
+                <h1 class="game-page-title text-center text-primary mt-3">Edit Game</h1>
+            </div>
+            <div class="mb-3" style="color: #ffffff; width: 300px;">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3" style="width: 300px;">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3" style="width: 100px;">
+                <label asp-for="Price"></label>
+                <textarea asp-for="Price" class="form-control" rows="1"></textarea>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3" style="width: 120px;">
+                <label asp-for="ReleaseDate"></label>
+                <textarea asp-for="ReleaseDate" class="form-control" rows="1"></textarea>
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 150px; margin-right: 20px; margin-top: 15px;">Update</button>
+            <a asp-controller="Games" asp-action="AllGames" class="btn btn-secondary" style="width: 170px; margin-top: 15px;">Back to games list</a>
+        </div>
+    </div>
+</form>
+</div>

@@ -1,0 +1,41 @@
+﻿@using Steamity.Models.ViewModels.GameViewModels;
+@model SingleGameViewModel
+
+@{
+    this.ViewData["Title"] = @Model.Title;
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="card-title">Title: @Model.Title</h1>
+                    <p class="card-text">Description: @Model.Description</p>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">Price: @Model.Price</li>
+                        <li class="list-group-item">Release Date: @Model.ReleaseDate</li>
+                    </ul>
+                </div>
+            </div>
+            <form asp-controller="Wishlist" asp-action="AddGameToWishlist" asp-route-id="@Model.Id" method="post" style="margin-top: 15px;">
+                <button type="submit" class="btn btn-primary controller-link" style="width: 170px;">
+                    Add to wishlist
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="btn btn-secondary" style="width: 100px; margin-right: 20px; margin-top: 20px;">
+        <a asp-controller="Games" asp-action="Edit" asp-route-id="@Model.Id" class="controller-link">
+            Edit&nbsp;
+        </a>
+    </div>
+    <div class="btn btn-primary" style="width: 100px; margin-top: 20px;">
+        <a asp-controller="Games" asp-action="Delete" asp-route-id="@Model.Id" class="controller-link">
+            Delete&nbsp;
+        </a>
+    </div>
+</div>
+

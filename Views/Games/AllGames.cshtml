@@ -1,0 +1,87 @@
+﻿@using Steamity.Models.ViewModels.GameViewModels;
+@model GamesListViewModel
+
+@{
+    ViewData["Title"] = "All Games";
+}
+
+
+
+<h1 class="game-page-title text-center text-primary mt-4">Game page</h1>
+<table class="table table-bordered table-striped table-allgames" style="width:100%">
+    <thead class="thead-dark">
+        <tr>    
+            <th>
+                Game Name
+            </th>
+            <th>
+                Game Price
+            </th>
+            <th>
+                Game Release Date
+            </th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var game in Model.Games)
+        {
+            <tr class="table-dark">
+                <td width="50%">
+                    <a asp-action="GetById" asp-route-id="@game.Id">
+                        @game.Title
+                    </a>
+                </td>
+                <td width="50%">
+                    @game.Price
+                </td>
+                <td width="50%">
+                    @game.ReleaseDate
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form class="d-flex" id="searchForm" asp-controller="Games" asp-action="PartialSearch" method="post">
+    <input class="form-control me-sm-2" type="search" id="searchInput" name="searchTerm" placeholder="Search by Title">
+    <input class="form-control me-sm-2" type="text" id="releaseDateInput" name="releaseDate" placeholder="Search by Release Date">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+
+<div id="suggestions"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput, #releaseDateInput").on("input", function () {
+            var searchTerm = $("#searchInput").val();
+            var releaseDate = $("#releaseDateInput").val();
+
+            console.log("Search Term:", searchTerm);
+            console.log("Release Date:", releaseDate);
+
+            // Check if either search term or release date is provided
+            if (searchTerm.length > 0 || releaseDate.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Games/PartialSearch",
+                    data: { searchTerm: searchTerm, releaseDate: releaseDate },
+                    success: function (result) {
+                        console.log("Success:", result);
+                        $("#suggestions").html(result);
+                    },
+                    error: function (error) {
+                        console.error("Error during partial search: ", error);
+                    }
+                });
+            } else {
+                $("#suggestions").html("");
+            }
+        });
+    });
+</script>
+
+

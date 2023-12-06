@@ -1,0 +1,25 @@
+﻿@using Steamity.Models.ViewModels.GameViewModels;
+@model GamesListViewModel
+
+
+
+<table class="table table-bordered table-striped table-allgames mt-4" style="width:100%">
+    <tbody>
+        @foreach (var game in Model.Games)
+        {
+            <tr class="table-dark">
+                <td width="50%">
+                    <a asp-action="GetById" asp-route-id="@game.Id">
+                        @game.Title
+                    </a>
+                </td>
+                <td width="50%">
+                    @game.Price
+                </td>
+                <td width="50%">
+                    @game.ReleaseDate
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

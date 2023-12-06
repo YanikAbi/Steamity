@@ -1,0 +1,42 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.controller-link, .controller-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.game-page-title {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.table-allgames thead th {
+    color: white !important;
+    text-align: center;
+}
+
+.custom-textarea {
+    width: 30px; 
+}
+
+.nav-item a.nav-link.text-dark:hover {
+    color: white !important;
+}

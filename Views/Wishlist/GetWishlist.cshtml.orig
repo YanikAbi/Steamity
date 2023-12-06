@@ -1,0 +1,47 @@
+<<<<<<< HEAD
+﻿@model IEnumerable<Wishlist>
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Your Wishlist</p>
+
+=======
+﻿@using Steamity.Models.ViewModels.GameViewModels.WishlistViewModels;
+@model WishlistGamesViewModel
+
+<h1>Wishlist page</h1>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Game name
+            </th>
+            <th>
+                Game Price
+            </th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var game in Model.WishlistGames)
+        {
+            <tr>
+                <td width="33%">
+                    <a asp-action="GetById" asp-route-id="@game.Id">
+                        @game.Title
+                    </a>
+                </td>
+                <td width="33%">
+                    @game.Id
+                </td>
+                <td width="33%">
+                    @game.DateAdded
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+>>>>>>> bdaab15126f55265f881087a0a3751318aea0a58
